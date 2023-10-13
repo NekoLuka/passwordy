@@ -1,9 +1,9 @@
 #!/bin/bash
 
+umask 077
+
 password_file=~/passwords.enc
 temp_file=$(mktemp)
-
-chmod u=rw,g-rwx,o=-rwx $temp_file
 
 read -sp 'Password: ' password
 
