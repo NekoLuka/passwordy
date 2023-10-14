@@ -9,7 +9,7 @@ default_editor=${EDITOR:-nano}
 
 read -sp "Enter password for ${password_file}:$(printf $'\n')" password
 
-if [ ! -e $password_file ] || [ ! -s $password_file ]; then
+if [ ! -s $password_file ]; then
         $default_editor $temp_file && openssl enc -aes-256-cbc -pbkdf2 -pass pass:$password -in $temp_file -out $password_file && rm $temp_file
 else
         openssl enc -aes-256-cbc -pbkdf2 -pass pass:$password -d -in $password_file -out $temp_file && $default_editor $temp_file && \
